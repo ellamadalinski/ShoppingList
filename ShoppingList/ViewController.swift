@@ -88,6 +88,11 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     }
     
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //
+    }
+    
+    
     @IBAction func saveButtonAction(_ sender: UIBarButtonItem) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(cart) {
