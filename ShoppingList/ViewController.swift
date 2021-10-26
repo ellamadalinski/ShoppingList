@@ -27,6 +27,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     @IBOutlet weak var tableViewOutlet: UITableView!
     @IBOutlet weak var itemNameTextFieldOutlet: UITextField!
     @IBOutlet weak var itemPriceTextFieldOutlet: UITextField!
+    @IBOutlet weak var cartTextViewOutlet: UITextView!
     
     
     
@@ -71,7 +72,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         }
         
         else{
-            let alert = UIAlertController(title: "Error", message: "1+ Text Fields Not Filled Out", preferredStyle: .alert)
+            let alert = UIAlertController(title: "Error", message: "Name and/or Price Not Filled Out", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
             alert.addAction(okAction)
             present(alert, animated: true, completion: nil)
@@ -89,7 +90,9 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        cartTextViewOutlet.text += "\(cart[indexPath.row].name)\n"
+        cart.remove(at: indexPath.row)
+        tableViewOutlet.reloadData()
     }
     
     
