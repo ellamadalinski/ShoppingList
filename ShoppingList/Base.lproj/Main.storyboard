@@ -62,23 +62,30 @@
                         <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" style="plain" id="9eC-Sj-o3O">
                             <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Name" textAlignment="center" minimumFontSize="17" id="TgF-Pw-Xgc">
-                                <rect key="frame" x="16" y="5" width="160" height="34"/>
+                                <rect key="frame" x="16" y="5" width="130" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </barButtonItem>
-                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Price" textAlignment="center" minimumFontSize="17" id="sH6-a4-xtT">
-                            <rect key="frame" x="182" y="5" width="153.33333333333337" height="34"/>
+                        <textField key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Item Price" textAlignment="center" minimumFontSize="17" id="sH6-a4-xtT">
+                            <rect key="frame" x="152" y="5" width="127.33333333333331" height="34"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="XQy-So-hpv">
-                            <connections>
-                                <action selector="addButtonAction:" destination="BYZ-38-t0r" id="2Dl-G5-1dR"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="plain" systemItem="save" id="Ywn-wA-hXq">
+                                <connections>
+                                    <action selector="saveButtonAction:" destination="BYZ-38-t0r" id="fNp-yP-w9g"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="add" id="XQy-So-hpv">
+                                <connections>
+                                    <action selector="addButtonAction:" destination="BYZ-38-t0r" id="2Dl-G5-1dR"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="itemNameTextFieldOutlet" destination="TgF-Pw-Xgc" id="jkb-me-SMH"/>
@@ -88,7 +95,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="923.1884057971015" y="79.6875"/>
+            <point key="canvasLocation" x="923.07692307692309" y="79.620853080568722"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Jqg-CO-5bB">

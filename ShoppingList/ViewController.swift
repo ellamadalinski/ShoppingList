@@ -7,16 +7,22 @@
 
 import UIKit
 
-struct Item {
+public class Item: Codable{
+    
     var name : String
     var price : Double
     
+    init(name : String, price : Double){
+        self.name = name
+        self.price = price
+    }
 }
 
 class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSource {
     
     var cart : [Item] = []
     var start = Item(name: "Bread", price: 3.75)
+    let defaults = UserDefaults.standard
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     @IBOutlet weak var itemNameTextFieldOutlet: UITextField!
@@ -29,6 +35,12 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         tableViewOutlet.delegate = self
         tableViewOutlet.dataSource = self
         cart.append(start)
+        if let it = UserDefaults.standard.data(forKey: "myCart") {
+            let decoder = JSONDecoder()
+            if let decoded = try? decoder.decode([Item].self, from: it) {
+                cart = decoded
+            }
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,6 +84,14 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         if editingStyle == .delete{
             cart.remove(at: indexPath.row)
             tableViewOutlet.reloadData()
+        }
+    }
+    
+    
+    @IBAction func saveButtonAction(_ sender: UIBarButtonItem) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(cart) {
+            UserDefaults.standard.set(encoded, forKey: "myCart")
         }
     }
     
