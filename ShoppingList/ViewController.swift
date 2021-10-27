@@ -23,6 +23,8 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     var cart : [Item] = []
     var start = Item(name: "Bread", price: 3.75)
     let defaults = UserDefaults.standard
+    var n : String = ""
+    var p : String = ""
     
     @IBOutlet weak var tableViewOutlet: UITableView!
     @IBOutlet weak var itemNameTextFieldOutlet: UITextField!
@@ -62,22 +64,32 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
-            let alert = UIAlertController(title: "", message: "Edit list item", preferredStyle: .alert)
-            alert.addTextField(configurationHandler: { (textField) in textField.text = self.cart[indexPath.row].name })
-            alert.addTextField(configurationHandler: { (textField) in textField.text = String(self.cart[indexPath.row].name) })
-            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in self.cart[indexPath.row].name = alert.textFields!.first!.text!
-            if let yes = Double(alert.textFields!.first!.text!){
-                alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in self.cart[indexPath.row].price = yes
+        let editAction = UITableViewRowAction(style: .default, title: "Edit") { (action, indexPath) in
+            let alert = UIAlertController(title: "Edit Item", message: "", preferredStyle: .alert)
+            alert.addTextField { (textField1) in
+                textField1.placeholder = "Item Name"
+                if let n1 = textField1.text{
+                    self.n = n1
+                }
             }
-                    //self.tableView.reloadRows(at: [indexPath], with: .fade)
-            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-            self.present(alert, animated: false)
-//
-//            let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
-//                self.list.remove(at: indexPath.row)
-//                tableView.reloadData()
-            return [deleteAction, editAction]
+            
+            alert.addTextField { (textField2) in
+                textField2.placeholder = "Item Price"
+                if let p1 = textField2.text{
+                    self.p = p1
+                }
+            }
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in
+                self.cart[indexPath.row].name = self.n
+                if let p2 = Double(self.p){
+                    self.cart[indexPath.row].price = p2
+                }
+            }))
+        }
+        
+        tableViewOutlet.reloadData()
+        return [editAction]
+        
     }
     
     
