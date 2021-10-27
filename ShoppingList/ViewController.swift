@@ -56,6 +56,31 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
     }
     
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let editAction = UITableViewRowAction(style: .default, title: "Edit", handler: { (action, indexPath) in
+            let alert = UIAlertController(title: "", message: "Edit list item", preferredStyle: .alert)
+            alert.addTextField(configurationHandler: { (textField) in textField.text = self.cart[indexPath.row].name })
+            alert.addTextField(configurationHandler: { (textField) in textField.text = String(self.cart[indexPath.row].name) })
+            alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in self.cart[indexPath.row].name = alert.textFields!.first!.text!
+            if let yes = Double(alert.textFields!.first!.text!){
+                alert.addAction(UIAlertAction(title: "Update", style: .default, handler: { (updateAction) in self.cart[indexPath.row].price = yes
+            }
+                    //self.tableView.reloadRows(at: [indexPath], with: .fade)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: false)
+//
+//            let deleteAction = UITableViewRowAction(style: .default, title: "Delete", handler: { (action, indexPath) in
+//                self.list.remove(at: indexPath.row)
+//                tableView.reloadData()
+            return [deleteAction, editAction]
+    }
+    
+    
     @IBAction func addButtonAction(_ sender: UIBarButtonItem) {
         if itemNameTextFieldOutlet.text != "" && itemPriceTextFieldOutlet.text != ""{
             if let n = itemNameTextFieldOutlet.text{
