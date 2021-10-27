@@ -55,7 +55,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
                     cartTextViewOutlet.text += "\(blah.name)\n"
                     totalPrice += blah.price
                 }
-                //totalPriceLabelOutlet.text = //FINISH
+                totalPriceLabelOutlet.text = String(totalPrice)
             }
         }
     }
@@ -147,6 +147,7 @@ class ViewController: UIViewController , UITableViewDelegate , UITableViewDataSo
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(list) {
             UserDefaults.standard.set(encoded, forKey: "myList")
+            print("saved")
         }
         
         if let encoded2 = try? encoder.encode(cart){
